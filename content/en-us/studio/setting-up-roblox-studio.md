@@ -1,4 +1,36 @@
----
+---local AnalyticsService = game:GetService("AnalyticsService")
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local currentPlayer = Players.LocalPlayer
+
+funnelSessionId = HttpService:GenerateGUID()
+
+-- Faça login quando o usuário abrir a loja
+AnalyticsService:LogFunnelStepEvent(
+    currentPlayer,
+    "ArmoryCheckout", -- Nome do funil usado para agrupar etapas
+    funnelSessionId, -- ID da sessão do funil para essa sessão de checkout única
+    1, -- Número do passo
+    "Opened Store" -- Nome do Passo
+)
+
+-- Registe-se quando o usuário vê um item
+AnalyticsService:LogFunnelStepEvent(
+    currentPlayer,
+    "ArmoryCheckout", -- Nome do funil usado para agrupar etapas
+    funnelSessionId, -- ID da sessão do funil para essa sessão de checkout única
+    2, -- Número do passo
+    "Viewed Item" -- Nome do Passo
+)
+
+-- Registre quando as visualizações do usuário forem adicionadas ao carrinho
+AnalyticsService:LogFunnelStepEvent(
+    currentPlayer,
+    "ArmoryCheckout", -- Nome do funil usado para agrupar etapas
+    funnelSessionId, -- ID da sessão do funil para essa sessão de checkout única
+    3, -- Número do passo
+    "Added to Cart" -- Nome do Passo
+)
 title: Roblox Studio Setup
 description: Explains how to install Roblox Studio on your system.
 ---
