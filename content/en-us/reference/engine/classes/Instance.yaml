@@ -1,4 +1,4 @@
-name: Instance
+player.Namename: Instance
 type: class
 category:
 memory_category: Instances
@@ -1878,3 +1878,18 @@ events:
     security: None
     thread_safety: Unsafe
 callbacks: []
+-- Script dentro do bloco Goal
+
+local goal = script.Parent
+
+local function onTouch(other)
+    if other:IsA("Model") and other:FindFirstChild("Humanoid") then
+        local player = game.Players:GetPlayerFromCharacter(other)
+        if player then
+            print(player.Name .. " alcançou o objetivo!")
+            -- Aqui você pode adicionar um ponto de vitória ou outras funcionalidades
+        end
+    end
+end
+
+goal.Touched:Connect(onTouch)
